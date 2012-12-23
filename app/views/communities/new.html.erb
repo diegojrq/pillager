@@ -1,0 +1,19 @@
+<h1>Communities#new</h1>
+
+<%= form_for @community do |f| %>
+    <% if @community.errors.any? %>
+    <div class="error_messages">
+      <h2>Form is invalid</h2>
+      <ul>
+        <% for message in @community.errors.full_messages %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>  
+  <p class="button"><%= f.submit %></p>
+<% end %>

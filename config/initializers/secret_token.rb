@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-Ohgre::Application.config.secret_token = 'be898d969b1a47e38f1681261675c9012c7daf990b523b0596e38af8d6cc1f688728cbfba4d40385b1ab926ca40655ebfd9c3d68a2ef5859fc70db5b6d3e996d'
+Ohgre::Application.config.secret_token = '2ab87990b614565416656f19fba92cd31f9123bbbc801bb7116554040337c1b4c67d29c55a851c92724b4af1df4f7f962a65de49d31b581633837808486e1dfa'

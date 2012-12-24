@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   
-  has_many :communities
+  has_and_belongs_to_many :communities
   
   attr_accessible :name, :email, :password, :password_confirmation
   attr_accessor :password

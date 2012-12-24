@@ -11,13 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121208224648) do
+ActiveRecord::Schema.define(:version => 20121224123011) do
 
   create_table "communities", :force => true do |t|
     t.integer  "user_id"
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "communities_users", :id => false, :force => true do |t|
+    t.integer "community_id"
+    t.integer "user_id"
   end
 
   create_table "users", :force => true do |t|

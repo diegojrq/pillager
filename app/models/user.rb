@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   
   has_many :communities
   
-  attr_accessible :email, :password, :password_confirmation
+  attr_accessible :name, :email, :password, :password_confirmation
   attr_accessor :password
   before_save :encrypt_password
    

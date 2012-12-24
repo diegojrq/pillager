@@ -1,7 +1,11 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+### Creating Users
+
+User.delete_all
+User.create!(:name => "Diego Queiroz", :password => "123",
+  :password_confirmation => "123", :email => "diegojrq@gmail.com")
+User.create!(:name => "Ana Paula", :password => "123",
+  :password_confirmation => "123", :email => "anap.aguiarc@gmail.com")
+
+#@ create! serve pra pocar o erro pelo q eu testei (erro de duplicacao de email nesse caso)
+
+### Creating Users

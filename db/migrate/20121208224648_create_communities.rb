@@ -1,7 +1,7 @@
 class CreateCommunities < ActiveRecord::Migration
   def up
     create_table :communities do |t|
-      t.integer :user_id
+      t.integer :owner_id
       t.string :name
 
       t.timestamps
@@ -9,6 +9,6 @@ class CreateCommunities < ActiveRecord::Migration
   end
   
   def down
-    drop_table :communities do |t|
+    drop_table :communities
   end
 end

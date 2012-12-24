@@ -14,7 +14,7 @@
 ActiveRecord::Schema.define(:version => 20121224141229) do
 
   create_table "communities", :force => true do |t|
-    t.integer  "user_id"
+    t.integer  "owner_id"
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false

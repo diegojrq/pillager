@@ -25,6 +25,7 @@ class CommunitiesController < ApplicationController
   
   def create
     @community = Community.new(params[:community])
+    @community.owner_id = current_user.id
 
     if @community.save
       redirect_to root_url, :notice => "Signed up!"

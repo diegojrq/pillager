@@ -1,5 +1,9 @@
 class UsersController < ApplicationController  
-  def index
+
+  before_filter :require_admin, :only => [:index]
+  skip_before_filter :require_login, :only => [:create, :new]
+
+  def index    
     @users = User.all
 
     respond_to do |format|

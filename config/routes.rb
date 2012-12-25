@@ -1,5 +1,7 @@
 Ohgre::Application.routes.draw do
   
+  resources :roles
+
   get "communities/new"
 
   root :to => "users#new"

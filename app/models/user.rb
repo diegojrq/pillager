@@ -1,8 +1,9 @@
 class User < ActiveRecord::Base
   
   has_and_belongs_to_many :communities
+  belongs_to :role
   
-  attr_accessible :name, :email, :password, :password_confirmation
+  attr_accessible :name, :role_id, :email, :password, :password_confirmation
   attr_accessor :password
   before_save :encrypt_password
    
@@ -25,6 +26,29 @@ class User < ActiveRecord::Base
       self.password_salt = BCrypt::Engine.generate_salt
       self.password_hash = BCrypt::Engine.hash_secret(password, password_salt)
     end
+  end
+  
+  def method_missing(method_id, *args)
+    puts "hello"
+    puts role.name
+    if match = matches_dynamic_role_check?(method_id)
+      tokenize_roles(match.captures.first).each do |check|
+        return true if role.name.downcase == check
+      end
+      return false
+    else
+      super
+    end
+  end
+
+  private
+
+  def matches_dynamic_role_check?(method_id)
+    /^is_an?_([a-zA-Z]\w*)\?$/.match(method_id.to_s)
+  end
+
+  def tokenize_roles(string_to_split)
+    string_to_split.split(/_or_/)
   end
   
 end

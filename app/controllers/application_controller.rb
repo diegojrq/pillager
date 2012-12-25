@@ -13,6 +13,13 @@ class ApplicationController < ActionController::Base
     end
   end
   
+  def require_admin
+    if not current_user.is_an_admin?
+      flash[:error] = "Nah, u can't. U're just a simple " + current_user.role.name + ". Sorry!"
+      redirect_to log_in_url
+    end
+  end
+  
   public
 
   def current_user

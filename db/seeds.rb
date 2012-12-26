@@ -8,4 +8,8 @@ User.create!(:name => "Ana Paula", :password => "123",
 
 #@ create! serve pra pocar o erro pelo q eu testei (erro de duplicacao de email nesse caso)
 
-### Creating Users
+### Creating Roles
+
+Role.delete_all
+Role.create!(:name => "admin", :description => "Administrator.")
+Role.create!(:name => "user", :description => "Simple user.")

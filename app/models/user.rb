@@ -29,8 +29,6 @@ class User < ActiveRecord::Base
   end
   
   def method_missing(method_id, *args)
-    puts "hello"
-    puts role.name
     if match = matches_dynamic_role_check?(method_id)
       tokenize_roles(match.captures.first).each do |check|
         return true if role.name.downcase == check

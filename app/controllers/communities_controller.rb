@@ -1,7 +1,11 @@
 class CommunitiesController < ApplicationController
     
   def index
-    @communities = Community.all
+    if current_user.is_an_admin?
+      @communities = Community.all
+    else
+      @communities = Community.where("owner_id = ?", current_user[:id])
+    end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -29,7 +33,7 @@ class CommunitiesController < ApplicationController
     @community[:owner_id] = current_user[:id]
 
     if @community.save
-      redirect_to root_url, :notice => "Signed up!"
+      redirect_to communities_url, :notice => @community.name + " created! U must be happy."
     else
       render "new"
     end

@@ -7,13 +7,6 @@ class UsersController < ApplicationController
   private
 
   def validate_url_hack
-    puts "heraiem"
-    puts params[:id]
-    puts params[:id].to_i
-    puts current_user.id
-    puts current_user.is_an_admin?
-    puts (params[:id] == current_user.id)
-    
     if not current_user.is_an_admin?
       if not params[:id].to_i == current_user.id
         flash[:error] = "Nonono my friend. Not this way."

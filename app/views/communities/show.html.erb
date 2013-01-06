@@ -1,12 +1,43 @@
 <p id="notice"><%= notice %></p>
+<%= form_tag({:action => 'show'}, :method => 'get') do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+<% end %>
+
+<% if @users %>
+	<% @users.each do |user| %>
+	  <tr>
+	    <td><%= user.name %></td>
+	    <td><%= user.email %></td>
+	    <td><%= user.role.name %></td>
+	    <td> <%= link_to "test", invite_community_path(@community) %>  |</td>
+	  </tr>
+	<% end %>
+<% end %>
 
 <p>
   <b>Name:</b>
   <%= @community.name %>
 </p>
+USERS:
+colocar owner
+<br/>
+<% @community.users.each do |user| %>
+  <tr>
+    <td><%= user.name %></td>
+    <td><%= user.email %></td>
+    <td><%= user.role.name %></td>
+    <td><%= link_to 'Show', user %></td>
+    <td><%= link_to 'Edit', edit_user_path(user) %></td>
+    <td><%= link_to 'Destroy', user, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
 
+<br/>
 
-
+<br/>
 
 <%= link_to 'Edit', edit_community_path(@community) %> |
 <%= link_to 'Back', communities_path %>

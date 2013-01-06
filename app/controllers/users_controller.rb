@@ -16,7 +16,7 @@ class UsersController < ApplicationController
   end
 
   public
-
+  
   def index    
     @users = User.all
 

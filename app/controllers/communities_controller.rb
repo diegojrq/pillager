@@ -17,6 +17,11 @@ class CommunitiesController < ApplicationController
   # GET /communities/1.json
   def show
     @community = Community.find(params[:id])
+    
+    if params[:search]
+      puts "hereothet"
+      @users = User.find(:all, :conditions => ['name LIKE ?', "%#{params[:search]}%"])
+    end
 
     respond_to do |format|
       format.html # show.html.erb
@@ -31,6 +36,7 @@ class CommunitiesController < ApplicationController
   def create
     @community = Community.new(params[:community])
     @community[:owner_id] = current_user[:id]
+    @community.users << current_user
 
     if @community.save
       redirect_to communities_url, :notice => @community.name + " created! U must be happy."
@@ -42,6 +48,15 @@ class CommunitiesController < ApplicationController
   # GET /communities/1/edit
   def edit
     @community = Community.find(params[:id])
+  end
+  
+  def invite
+    @community = Community.find(params[:id])
+    
+    respond_to do |format|
+      format.html { redirect_to @community, notice: @community.name + ' Community was successfully updated.' }
+      format.json { head :no_content }
+    end
   end
   
   # PUT /communities/1

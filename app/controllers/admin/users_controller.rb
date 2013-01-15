@@ -1,8 +1,14 @@
-class UsersController < ApplicationController  
-
-  before_filter :validate_path_hack, :only => [:edit, :show, :update, :destroy]
-  skip_before_filter :require_login, :only => [:create, :new]
+class Admin::UsersController < ApplicationController::AdminController
   
+  def index    
+    @users = User.all
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @users }
+    end
+  end
+
   # GET /users/1
   # GET /users/1.json
   def show
@@ -59,6 +65,12 @@ class UsersController < ApplicationController
       format.html { redirect_to users_path }
       format.json { head :no_content }
     end
+  end
+  
+  #toDo ver isso aqui
+  def associate_role
+    @users = User.all
+    @roles = Role.all
   end
   
 end

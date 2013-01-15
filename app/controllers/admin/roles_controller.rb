@@ -1,6 +1,4 @@
-class RolesController < ApplicationController
-  
-  before_filter :require_admin
+class Admin::RolesController < ApplicationController::AdminController
   
   # GET /roles
   # GET /roles.json

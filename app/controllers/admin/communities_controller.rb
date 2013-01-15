@@ -1,4 +1,4 @@
-class CommunitiesController < ApplicationController
+class Admin::CommunitiesController < ApplicationController::AdminController
     
   def index
     if current_user.is_an_admin?

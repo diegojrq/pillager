@@ -1,5 +1,9 @@
 == Welcome to Ohgre toDo
 
+#primary
+
+clean the controllers: admin/nonadmi
+
 #communities
 
 send the invitation

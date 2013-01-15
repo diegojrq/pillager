@@ -11,3 +11,7 @@
  *= require_self
  *= require_tree .
 */
+
+body { margin: auto; width: 80%; }
+
+#user_nav { background-color: #f00; color: white; }

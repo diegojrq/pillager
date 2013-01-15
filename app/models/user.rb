@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   
   has_and_belongs_to_many :communities
   belongs_to :role
+  has_many :invites
   
   attr_accessible :name, :role_id, :email, :password, :password_confirmation
   attr_accessor :password

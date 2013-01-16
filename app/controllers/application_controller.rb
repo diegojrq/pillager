@@ -1,10 +1,14 @@
 class ApplicationController < ActionController::Base
 
   protect_from_forgery  
-  helper_method :current_user  
-  before_filter :require_login
+  helper_method :current_user, :is_admin_path
+  before_filter :require_login, :session_update
 
   private
+
+  def session_update
+    session[:return_to] ||= request.referer
+  end
 
   def require_login
     if not current_user
@@ -31,6 +35,21 @@ class ApplicationController < ActionController::Base
 
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
+  end
+  
+  def is_admin_path
+    current_uri = request.env['ORIGINAL_FULLPATH']
+    path = Rails.application.routes.recognize_path current_uri
+    puts path
+    controller = path[:controller]
+    action = path[:action]
+    puts "moreoverth"
+
+    if controller == "admin"
+      return true
+    else
+      return false
+end
   end
     
 end

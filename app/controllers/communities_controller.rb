@@ -1,11 +1,7 @@
 class CommunitiesController < ApplicationController
     
   def index
-    if current_user.is_an_admin?
-      @communities = Community.all
-    else
-      @communities = Community.where("owner_id = ?", current_user[:id])
-    end
+    @communities = User.find_by_id(current_user[:id]).communities
 
     respond_to do |format|
       format.html # index.html.erb
@@ -19,7 +15,6 @@ class CommunitiesController < ApplicationController
     @community = Community.find(params[:id])
     
     if params[:search]
-      puts "hereothet"
       @users = User.find(:all, :conditions => ['name LIKE ?', "%#{params[:search]}%"])
     end
 

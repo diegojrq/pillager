@@ -10,8 +10,12 @@
 
 <% @communities.each do |community| %>
   <tr>
-    <td><%= community.name %></td>
-	<td><%= community.owner_id %></td>
+    <td>
+	  <%= community.name %>
+	  <% if community.owner_id == current_user.id %>
+		[mine]
+	  <% end %>
+	</td>
     <td><%= link_to 'Show', community %></td>
     <td><%= link_to 'Edit', edit_community_path(community) %></td>
     <td><%= link_to 'Destroy', community, confirm: 'Are you sure?', method: :delete %></td>

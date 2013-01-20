@@ -25,10 +25,27 @@ class ApplicationController < ActionController::Base
   end
   
   def validate_path_hack
-      if not params[:id].to_i == current_user.id
-        flash[:error] = "Nonono my friend. Not this way."
+    if not params[:id].to_i == current_user.id
+      if current_user.is_an_admin?
+        if not is_admin_path
+          flash[:error] = "Not this way, bro. Try the #{ActionController::Base.helpers.link_to "Admin Interface", '/admin'}".html_safe + "!"
+          redirect_to home_path
+        end
+      else
+        flash[:error] = "Nah, friend. U can`t."
         redirect_to home_path
       end
+    end    
+  end
+  
+  def current_controller
+    current_uri = request.env['ORIGINAL_FULLPATH']
+    @controller = (Rails.application.routes.recognize_path current_uri)[:controller]
+  end
+  
+  def current_action
+    current_uri = request.env['ORIGINAL_FULLPATH']
+    @action = (Rails.application.routes.recognize_path current_uri)[:action]
   end
   
   public
@@ -38,18 +55,7 @@ class ApplicationController < ActionController::Base
   end
   
   def is_admin_path
-    current_uri = request.env['ORIGINAL_FULLPATH']
-    path = Rails.application.routes.recognize_path current_uri
-    puts path
-    controller = path[:controller]
-    action = path[:action]
-    puts "moreoverth"
-
-    if controller == "admin"
-      return true
-    else
-      return false
-end
+    return true if current_controller.split("/").first == "admin"
   end
     
 end

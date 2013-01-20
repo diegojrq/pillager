@@ -1,14 +1,19 @@
 class Admin::UsersController < ApplicationController::AdminController
+
+  before_filter :validate_path_hack, :only => [:edit, :show, :update, :destroy]
+  skip_before_filter :require_login, :only => [:create, :new]
   
-  def index    
+  # GET /users/1
+  # GET /users/1.json
+  def index
     @users = User.all
 
     respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @users }
+      format.html # show.html.erb
+      format.json { render json: @user }
     end
   end
-
+  
   # GET /users/1
   # GET /users/1.json
   def show
@@ -26,9 +31,10 @@ class Admin::UsersController < ApplicationController::AdminController
   
   def create
     @user = User.new(params[:user])
-    @user.role_id = 2 # simple user
+#    @user.role_id = 2 # simple user
+puts "whatamodafoca"
     if @user.save
-      redirect_to root_path, :notice => "Signed up!"
+      redirect_to admin_users_path, :notice => "U created a nice user, sir!"
     else
       render "new"
     end
@@ -62,15 +68,9 @@ class Admin::UsersController < ApplicationController::AdminController
     @user.destroy
 
     respond_to do |format|
-      format.html { redirect_to users_path }
+      format.html { redirect_to admin_users_path }
       format.json { head :no_content }
     end
-  end
-  
-  #toDo ver isso aqui
-  def associate_role
-    @users = User.all
-    @roles = Role.all
   end
   
 end

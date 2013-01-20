@@ -1,8 +1,13 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Name:</b>
-  <%= @user.name %>
+  <b>First Name:</b>
+  <%= @user.first_name %>
+</p>
+
+<p>
+  <b>Last Name:</b>
+  <%= @user.last_name %>
 </p>
 
 <p>
@@ -10,6 +15,15 @@
   <%= @user.email %>
 </p>
 
+<!-- internationalization !-->
+<p>
+  <b>Birthday:</b>
+  <%= @user.birthday.strftime("%m/%d/%Y") %>
+</p>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<p>
+  <b>Sex:</b>
+  <%= @user.sex.name %>
+</p>
+
+<%= link_to 'Edit', edit_user_path(@user) %>

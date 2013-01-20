@@ -12,8 +12,12 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name %>
+  </div>
+  <div class="field">
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name %>
   </div>
   <div class="field">
     <%= f.label :email %><br />
@@ -27,12 +31,16 @@
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation %>
   </div>
-
-  <% if current_user %>
-	<% if current_user.is_an_admin? %>
-		<%= collection_select(:user, :role_id, Role.all, :id, :name) %>
-	<% end %>
-  <% end %>
+  <!-- internationalization !-->
+  <div class="field">
+    <%= f.label :birthday %><br />
+    <%= f.date_select :birthday, :start_year => Date.today.year - 125, :end_year => Date.today.year,
+		:order => [:month, :day, :year] %>
+  </div>
+  <div class="field">
+	<%= f.label :sex %><br />
+    <%= collection_select(:sex, :sex_id, Sex.all, :id, :name) %>
+  </div>
 
   <div class="actions">
     <%= f.submit %>

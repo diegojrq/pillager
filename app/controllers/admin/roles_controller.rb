@@ -1,5 +1,7 @@
 class Admin::RolesController < ApplicationController::AdminController
   
+  before_filter :require_admin
+  
   # GET /roles
   # GET /roles.json
   def index

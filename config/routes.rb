@@ -13,7 +13,7 @@ Ohgre::Application.routes.draw do
   get "home" => "home#index", :as => "home"
   get "logout" => "sessions#destroy", :as => "logout"
   get "login" => "sessions#new", :as => "login"
-  get "sign_up" => "users#new", :as => "sign_up"
+  get "signup" => "users#new", :as => "signup"
   
   namespace :admin do
     resources :users

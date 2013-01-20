@@ -2,15 +2,15 @@ class User < ActiveRecord::Base
   
   has_and_belongs_to_many :communities
   belongs_to :role
+  belongs_to :sex
   has_many :invites
   
-  attr_accessible :name, :role_id, :email, :password, :password_confirmation
+  attr_accessible :first_name, :last_name, :role_id, :email, :password, :password_confirmation, :birthday
   attr_accessor :password
   before_save :encrypt_password
-   
+  
   validates_confirmation_of :password
-  validates_presence_of :password, :on => :create
-  validates_presence_of :email
+  validates_presence_of :sex, :birthday, :first_name, :last_name, :email, :password, :on => :create
   validates_uniqueness_of :email
   
   def self.authenticate(email, password)

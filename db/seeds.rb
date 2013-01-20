@@ -1,20 +1,23 @@
-### Creating Users
+Role.delete_all
+admin_role = Role.create!(:name => "admin", :description => "Administrator")
+user_role = Role.create!(:name => "user", :description => "User")
+
+Sex.delete_all
+s1 = Sex.create!(:name => "Female")
+s2 = Sex.create!(:name => "Male")
 
 User.delete_all
-u1 = User.create!(:name => "Diego Queiroz", :password => "123",
-  :password_confirmation => "123", :email => "diegojrq@gmail.com", :role_id => 1)
-u2 = User.create!(:name => "Ana Paula", :password => "123",  
-  :password_confirmation => "123", :email => "anap.aguiarc@gmail.com", :role_id => 2)
+u1 = User.new(:first_name => "Diego", :last_name => "Queiroz", :password => "123",
+  :password_confirmation => "123", :email => "diegojrq@gmail.com", :birthday => "1987-10-28")
+u1.role = admin_role
+u1.sex = s2
+u1.save!
 
-#@ create! serve pra pocar o erro pelo q eu testei (erro de duplicacao de email nesse caso)
-
-### Creating Roles
-
-Role.delete_all
-Role.create!(:name => "admin", :description => "Administrator.")
-Role.create!(:name => "user", :description => "Simple user.")
-
-### Creating communities
+u2 = User.new(:first_name => "Ana Paula", :last_name => "Aguiar", :password => "123",  
+  :password_confirmation => "123", :email => "anap.aguiarc@gmail.com", :birthday => "1989-04-15")
+u2.role = user_role
+u2.sex = s1
+u2.save!
 
 Community.delete_all
 c = Community.create!(:name => "Community Alpha", :owner_id => 1)
@@ -24,31 +27,3 @@ c.users << u1
 c = Community.create!(:name => "Community Gama", :owner_id => 2)
 c.users << u2
 c.users << u1
-
-/
-# deleting
-User.delete_all
-Role.delete_all
-Community.delete_all
-
-# creating
-## creating admin role
-r = Role.create!(:name => "admin", :description => "Administrator.")
-## creating user
-u = User.create!(:name => "Diego Queiroz", :password => "123",
-  :password_confirmation => "123", :email => "diegojrq@gmail.com")
-## setting user to admin
-u.role = r
-c = Community.create!(:name => "Community Alpha", :owner_id => 1)
-## adding user to community
-c.users << u
-c = Community.create!(:name => "Community Beta", :owner_id => 1)
-c.users << u
-## creating normal user
-u = User.create!(:name => "Ana Paula", :password => "123",  
-  :password_confirmation => "123", :email => "anap.aguiarc@gmail.com")
-r = Role.create!(:name => "user", :description => "Simple user.")
-u.role = r
-c = Community.create!(:name => "Community Gama", :owner_id => 2)  
-c.users << u
-/

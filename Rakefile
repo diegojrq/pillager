@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Ohgre::Application.load_tasks
+Pillager::Application.load_tasks

@@ -1,4 +1,4 @@
-Ohgre::Application.routes.draw do
+Pillager::Application.routes.draw do
   
   resources :roles
   resources :invites

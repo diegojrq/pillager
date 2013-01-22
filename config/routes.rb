@@ -2,18 +2,15 @@ Pillager::Application.routes.draw do
   
   resources :roles
   resources :invites
-  resources :admin, :only => :index
-  resources :home, :only => :index
 
-  get "communities/new"
-
-  root :to => "users#new"
-  
   get "admin" => "admin#index", :as => "admin"
-  get "home" => "home#index", :as => "home"
+  get "home" => "home#home", :as => "home"
+  get "main" => "home#main", :as => "main"
   get "logout" => "sessions#destroy", :as => "logout"
   get "login" => "sessions#new", :as => "login"
   get "signup" => "users#new", :as => "signup"
+
+  root :to => "home#home"
   
   namespace :admin do
     resources :users

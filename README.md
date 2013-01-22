@@ -1,4 +1,4 @@
-== Welcome to Ohgre
+== Welcome to Pillager!!!!
 
 We're live!
 

@@ -33,6 +33,11 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
   
+  # GET /users/1/edit_password
+  def edit_password
+    @user = User.find(params[:id])
+  end
+  
   # PUT /users/1
   # PUT /users/1.json
   def update

@@ -13,7 +13,7 @@
     <td>
 	  <%= community.name %>
 	  <% if community.owner_id == current_user.id %>
-		[mine]
+		[owner]
 	  <% end %>
 	</td>
     <td><%= link_to 'Show', community %></td>

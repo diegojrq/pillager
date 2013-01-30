@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <b>First Name:</b>
   <%= @user.first_name %>
@@ -23,7 +21,8 @@
 
 <p>
   <b>Sex:</b>
-  <%= @user.sex.name %>
+  <%= @user.gender %>
 </p>
 
+<%= link_to 'Edit pass', edit_password_path(@user) %>
 <%= link_to 'Edit', edit_user_path(@user) %>

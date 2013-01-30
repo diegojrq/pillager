@@ -6,9 +6,9 @@ class CreateUsers < ActiveRecord::Migration
       t.string :email
       t.date :birthday
       t.string :password_hash
-      t.string :password_salt
+      t.string :password_salt      
+      t.string :gender, :limit => 1
       
-      t.references :sex
       t.references :role
 
       t.timestamps

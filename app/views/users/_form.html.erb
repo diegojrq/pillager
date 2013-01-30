@@ -1,48 +1,52 @@
 <%= form_for(@user) do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+	<% if @user.errors.any? %>
+		<div id="error_explanation">
+			<h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+			<ul>
+			<% @user.errors.full_messages.each do |msg| %>
+				<li><%= msg %></li>
+			<% end %>
+			</ul>
+		</div>
+	<% end %>
 
-      <ul>
-      <% @user.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+	<% if current_action != "edit_password" %>
+		<div class="field">
+			<%= f.label :first_name %><br />
+			<%= f.text_field :first_name %>
+		</div>
+		<div class="field">
+			<%= f.label :last_name %><br />
+			<%= f.text_field :last_name %>
+		</div>
+		<div class="field">
+			<%= f.label :email %><br />
+			<%= f.text_field :email %>
+		</div>
+	<% end %>
+	<% if current_action == "new" or current_action == "edit_password" %>
+		<div class="field">
+			<%= f.label :password %><br />
+			<%= f.password_field :password %>
+		</div>
+		<div class="field">
+			<%= f.label :password_confirmation %><br />
+			<%= f.password_field :password_confirmation %>
+		</div>
+	<% end %>
+	<% if current_action != "edit_password" %>
+		<!-- internationalization dmy mdy !-->
+		<div class="field">
+			<%= f.label :birthday %><br />
+			<%= f.date_select :birthday, :start_year => Date.today.year - 125, :end_year => Date.today.year, :order => [:month, :day, :year] %>
+		</div>
+		<div class="field">
+			<%= f.label :gender %><br />
+			<%= f.select :gender, options_for_select([['Male', 'Male'], ['Female', 'Female']], 	@user.gender) %>
+		</div>
+	<% end %>
 
-  <div class="field">
-    <%= f.label :first_name %><br />
-    <%= f.text_field :first_name %>
-  </div>
-  <div class="field">
-    <%= f.label :last_name %><br />
-    <%= f.text_field :last_name %>
-  </div>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password %>
-  </div>
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation %>
-  </div>
-  <!-- internationalization !-->
-  <div class="field">
-    <%= f.label :birthday %><br />
-    <%= f.date_select :birthday, :start_year => Date.today.year - 125, :end_year => Date.today.year,
-		:order => [:month, :day, :year] %>
-  </div>
-  <div class="field">
-	<%= f.label :sex %><br />
-    <%= collection_select(:sex, :sex_id, Sex.all, :id, :name) %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+	<div class="actions">
+	<%= f.submit %>
+	</div>
 <% end %>

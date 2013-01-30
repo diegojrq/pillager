@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
 
   protect_from_forgery  
-  helper_method :current_user, :is_admin_path
+  helper_method :current_user, :is_admin_path, :current_action, :current_controller
   before_filter :require_login, :session_update
 
   private
@@ -40,12 +40,12 @@ class ApplicationController < ActionController::Base
   
   def current_controller
     current_uri = request.env['ORIGINAL_FULLPATH']
-    @controller = (Rails.application.routes.recognize_path current_uri)[:controller]
+    @current_controller = (Rails.application.routes.recognize_path current_uri)[:controller]
   end
   
   def current_action
     current_uri = request.env['ORIGINAL_FULLPATH']
-    @action = (Rails.application.routes.recognize_path current_uri)[:action]
+    @current_action = (Rails.application.routes.recognize_path current_uri)[:action]
   end
   
   public

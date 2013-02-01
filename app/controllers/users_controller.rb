@@ -41,6 +41,9 @@ class UsersController < ApplicationController
   # PUT /users/1
   # PUT /users/1.json
   def update
+
+puts "heret11obe"
+    puts params[:new_password]
     @user = User.find(params[:id])
 
     respond_to do |format|

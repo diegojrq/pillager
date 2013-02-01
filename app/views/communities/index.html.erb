@@ -1,26 +1,19 @@
 <h1>Listing Communities</h1>
 
 <table>
-  <tr>
-    <th>Name</th>
-    <th>Owner</th>
-    <th></th>
-    <th></th>
-  </tr>
+	<tr>
+		<th>Community</th>
+	</tr>
 
-<% @communities.each do |community| %>
-  <tr>
-    <td>
-	  <%= community.name %>
-	  <% if community.owner_id == current_user.id %>
-		[owner]
-	  <% end %>
-	</td>
-    <td><%= link_to 'Show', community %></td>
-    <td><%= link_to 'Edit', edit_community_path(community) %></td>
-    <td><%= link_to 'Destroy', community, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
-<% end %>
+	<% @communities.each do |community| %>
+	  <tr>
+	    <td><%= link_to community.name, community %>
+		  <% if community.owner_id == current_user.id %>
+			[owner]
+		  <% end %>
+		</td>
+	  </tr>
+	<% end %>
 </table>
 
 <br />

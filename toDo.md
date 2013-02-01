@@ -2,10 +2,12 @@
 
 #workingon
 
-get "edit_password" => "users#edit_password", :as => "edit_password"
+edit password: see if a controller is a solution
+http://railscasts.com/episodes/274-remember-me-reset-password
 
 #primary
 
+privacy for all (see validate_path_hack)
 clean the controllers: admin/nonadmi
 
 #communities

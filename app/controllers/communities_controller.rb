@@ -15,7 +15,8 @@ class CommunitiesController < ApplicationController
     @community = Community.find(params[:id])
     
     if params[:search]
-      @users = User.find(:all, :conditions => ['name LIKE ?', "%#{params[:search]}%"])
+      @users = User.find(:all, :conditions => (["first_name LIKE ? or last_name LIKE ? or email = ?", 
+          "%#{params[:search]}%", "%#{params[:search]}%", "#{params[:search]}"]))
     end
 
     respond_to do |format|

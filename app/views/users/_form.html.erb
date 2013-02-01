@@ -9,22 +9,21 @@
 			</ul>
 		</div>
 	<% end %>
-
-	<% if current_action != "edit_password" %>
-		<div class="field">
-			<%= f.label :first_name %><br />
-			<%= f.text_field :first_name %>
-		</div>
-		<div class="field">
-			<%= f.label :last_name %><br />
-			<%= f.text_field :last_name %>
-		</div>
-		<div class="field">
-			<%= f.label :email %><br />
-			<%= f.text_field :email %>
-		</div>
-	<% end %>
-	<% if current_action == "new" or current_action == "edit_password" %>
+	
+	<div class="field">
+		<%= f.label :first_name %><br />
+		<%= f.text_field :first_name %>
+	</div>
+	<div class="field">
+		<%= f.label :last_name %><br />
+		<%= f.text_field :last_name %>
+	</div>
+	<div class="field">
+		<%= f.label :email %><br />
+		<%= f.text_field :email %>
+	</div>
+	
+	<% if current_action == "new" %>
 		<div class="field">
 			<%= f.label :password %><br />
 			<%= f.password_field :password %>
@@ -34,17 +33,16 @@
 			<%= f.password_field :password_confirmation %>
 		</div>
 	<% end %>
-	<% if current_action != "edit_password" %>
-		<!-- internationalization dmy mdy !-->
-		<div class="field">
-			<%= f.label :birthday %><br />
-			<%= f.date_select :birthday, :start_year => Date.today.year - 125, :end_year => Date.today.year, :order => [:month, :day, :year] %>
-		</div>
-		<div class="field">
-			<%= f.label :gender %><br />
-			<%= f.select :gender, options_for_select([['Male', 'Male'], ['Female', 'Female']], 	@user.gender) %>
-		</div>
-	<% end %>
+	
+	<!-- internationalization dmy mdy !-->
+	<div class="field">
+		<%= f.label :birthday %><br />
+		<%= f.date_select :birthday, :start_year => Date.today.year - 125, :end_year => Date.today.year, :order => [:month, :day, :year] %>
+	</div>
+	<div class="field">
+		<%= f.label :gender %><br />
+		<%= f.select :gender, options_for_select([['Male', 'Male'], ['Female', 'Female']], 	@user.gender) %>
+	</div>
 
 	<div class="actions">
 	<%= f.submit %>

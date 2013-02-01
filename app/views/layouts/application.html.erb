@@ -15,7 +15,7 @@
 	  <% if current_user.is_a_admin? %>
 		<%= link_to "admin", admin_path %>
 	  <% end %>
-	  home
+	<%= link_to "home", home_path %>
   <% else %>
     <%= link_to "sign up", signup_path %> or
     <%= link_to "log in", login_path %>

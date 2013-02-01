@@ -9,8 +9,6 @@ Pillager::Application.routes.draw do
   get "logout" => "sessions#destroy", :as => "logout"
   get "login" => "sessions#new", :as => "login"
   get "signup" => "users#new", :as => "signup"
-  
-  get "edit_password" => "users#edit_password", :as => "edit_password"
 
   root :to => "home#home"
   
@@ -23,6 +21,7 @@ Pillager::Application.routes.draw do
   resources :users, :except => :index do
     resources :invites
     resources :communities
+    resources :passwords
   end
   
   resources :communities do
